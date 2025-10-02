@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ACO Automotive - Services</title>
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+  <style>
+   * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+    }
+
+    /* Header */
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 2rem;
+      background: #111;
+      color: #fff;
+      position: relative;
+    }
+
+    header .logo img {
+      height: 60px;
+    }
+
+    nav.nav-desktop ul {
+      display: flex;
+      list-style: none;
+      gap: 1.5rem;
+    }
+
+    nav.nav-desktop ul li a {
+      text-decoration: none;
+      color: #fff;
+      font-weight: 500;
+    }
+
+    .call-btn {
+      background: #e63946;
+      padding: 0.5rem 1rem;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 6px;
+      margin-left: 1rem;
+    }
+
+        .contact-float {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: linear-gradient(90deg, #3b82f6, #2563eb);
+      color: #fff;
+      padding: 14px 20px;
+      border-radius: 50px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .contact-float:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.35);
+    }
+
+    .contact-float span.icon {
+      display: inline-flex;
+      width: 22px;
+      height: 22px;
+      background: white;
+      color: #2563eb;
+      border-radius: 50%;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 14px;
+    }
+    /* Hamburger button */
+    .menu-toggle {
+      display: none;
+      font-size: 2rem;
+      background: none;
+      border: none;
+      color: #fff;
+      cursor: pointer;
+    }
+
+    /* Side menu */
+    .side-menu {
+      position: fixed;
+      top: 0;
+      right: -250px;
+      width: 250px;
+      height: 100%;
+      background: #111;
+      color: #fff;
+      padding: 2rem 1rem;
+      transition: right 0.3s ease;
+      z-index: 1000;
+    }
+
+    .side-menu ul {
+      list-style: none;
+      padding: 0;
+      margin-top: 2rem;
+    }
+
+    .side-menu ul li {
+      margin: 1.2rem 0;
+    }
+
+    .side-menu ul li a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 1.2rem;
+    }
+
+    .side-menu .close-btn {
+      background: none;
+      border: none;
+      color: #fff;
+      font-size: 2rem;
+      float: right;
+      cursor: pointer;
+    }
+
+    .side-menu.active {
+      right: 0;
+    }
+
+    /* Hero Section */
+    .hero {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 3rem 2rem;
+      gap: 2rem;
+    }
+
+    .hero-video {
+      flex: 1;
+      min-height: 300px;
+    }
+
+    .hero-video video {
+      width: 100%;
+      border-radius: 10px;
+    }
+
+    .hero-right {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .hero-right img {
+      max-width: 100%;
+    }
+
+    .btn {
+      background: #e63946;
+      color: #fff;
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      margin-top: 1rem;
+    }
+
+    /* Stats Section */
+    .stats {
+      display: flex;
+      justify-content: space-around;
+      padding: 2rem;
+      background: black;
+      flex-wrap: wrap;
+    }
+
+    .stat {
+      text-align: center;
+      margin: 1rem;
+    }
+
+    /* Services */
+    .services {
+      text-align: center;
+      padding: 2rem;
+    }
+
+    .service-icons {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-top: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    /* Footer */
+    footer {
+      background: #111;
+      color: #fff;
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      nav.nav-desktop,
+      .call-btn {
+        display: none;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+
+      .hero {
+        flex-direction: column;
+        padding: 2rem 1rem;
+      }
+
+      .hero-right {
+        margin-top: 1.5rem;
+      }
+
+      .stats {
+        flex-direction: column;
+      }
+
+      .service-icons {
+        flex-direction: column;
+      }
+    }
+    .service-card video {
+  width: 100%;
+  height: 350px;     /* adjust to your layout */
+  object-fit: cover;   /* keeps video nicely cropped */
+  border-radius: 8px;  /* same rounding as images if any */
+  display: block;
+}
+
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+   <header>
+    <div class="logo">
+      <img src="images/acoautomotive logo.png" alt="ProMotors Logo">
+    </div>
+
+    <!-- Desktop Nav -->
+    <nav class="nav-desktop">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+
+    <!-- <a href="tel:+123456789" class="call-btn">+123 45 67 789</a> -->
+
+    <!-- Hamburger Button -->
+    <button class="menu-toggle">☰</button>
+  </header>
+   
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <h2>Our Services</h2>
+    <p>Explore the wide range of services we provide to keep your car running smooth and looking brand new.</p>
+  </section>
+
+  <!-- Services Offered Section -->
+  <section class="services-grid">
+    <div class="service-card">
+      <img src="images/mechnaicalservices.jpg" alt="Mechanical Servicing">
+      <h3>Mechanical Servicing</h3>
+      <p>Keep your ride running smooth with precision diagnostics and expert repairs.</p>
+    </div>
+
+    <div class="service-card">
+      <video autoplay muted loop playsinline>
+    <source src="images/Wheel Alignment.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+      <!-- <img src="images/Wheel Alignment & Balancing.png" alt="Wheel Alignment"> -->
+      <h3>Wheel Alignment & Balancing</h3>
+      <p>Glide straight, grip tight — perfect alignment, every time.</p>
+    </div>
+
+    <div class="service-card">
+      <img src="images/OEMspareparts.jpg" alt="OEM Spare Parts">
+      <h3>OEM Spare Parts</h3>
+      <p>Only genuine parts. No shortcuts. No compromises.</p>
+    </div>
+
+<div class="service-card">
+  <video autoplay muted loop playsinline>
+    <source src="images/insurance.mp4 " type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+  <h3>Insurance Cashless Claims</h3>
+  <p>Crash? We’ve got your back. Hassle-free insurance claims, no paperwork mess.</p>
+</div>
+
+
+    <div class="service-card">
+      <img src="images/renewal.png" alt="Insurance Renewal">
+      <h3>Insurance Renewal</h3>
+      <p>Quick. Easy. On point. Get your coverage without the chaos.</p>
+    </div>
+
+    <div class="service-card">
+      <img src="images/hitech.png" alt="Hi-tech Body Repair">
+      <h3>Hi-tech Body Repair</h3>
+      <p>From dents to drama — we restore perfection with cutting-edge tech.</p>
+    </div>
+
+    <div class="service-card">
+      <video autoplay muted loop playsinline>
+    <source src="images/boot painting.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+      <!-- <img src="images/CarPaint.jpg" alt="Booth Painting"> -->
+      <h3>Booth Painting</h3>
+      <p>Flawless finishes in a dust-free zone. That showroom glow? Yeah, we do that.</p>
+    </div>
+
+    <div class="service-card">
+       <video autoplay muted loop>
+        <source src="images/mixingpaint.mp4" type="video/mp4">
+      </video>
+      <!-- <img src="images/color pallete.jpg" alt="Spot Mixing Paint"> -->
+      <h3>Spot Mixing Paint</h3>
+      <p>Color-match kings. We mix it perfect, down to the shade.</p>
+    </div>
+
+    <div class="service-card">
+      <video autoplay muted loop>
+        <source src="images/polishing.mp4" type="video/mp4">
+      </video>
+      <h3>Rubbing & Polishing</h3>
+      <p>That deep gloss mirror finish? Consider it done.</p>
+    </div>
+
+    <div class="service-card">
+       <video autoplay muted loop>
+        <source src="images/cleaning.mp4" type="video/mp4">
+      </video>
+      <!-- <img src="images/Cleaning.jpg" alt="Upholstery Cleaning"> -->
+      <h3>Upholstery Cleaning</h3>
+      <p>Spill-proof vibes. Seats so fresh, you’ll forget what happened last weekend.</p>
+    </div>
+
+    <div class="service-card">
+      <video autoplay muted loop>
+        <source src="images/carbackpaint.mp4" type="video/mp4">
+      </video>
+      <h3>Under Chassis Coating</h3>
+      <p>Protection that lasts. Armor up from the bottom up.</p>
+    </div>
+
+    <div class="service-card">
+      <img src="images/gear.png" alt="Engine & Gear Box Overhaul">
+      <h3>Engine & Gear Box Overhaul</h3>
+      <p>Heavy-duty care for your car’s heart and soul.</p>
+    </div>
+
+    <div class="service-card">
+      <img src="images/ecu.jpg" alt="ECU Scanning">
+      <h3>ECU Scanning</h3>
+      <p>Tech check? We speak your car’s language fluently.</p>
+    </div>
+
+    <div class="service-card">
+      <img src="images/pickupdrop.png" alt="Free Pick & Drop">
+      <h3>Free Pick & Drop</h3>
+      <p>Doorstep service with style. Convenience meets quality.</p>
+    </div>
+  </section>
+<div>
+    <a href="contact.html" class="contact-float">
+    <span class="icon">✉</span>
+    Contact Us
+  </a>
+
+</div>
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 ACO Automotive. Keep it clean, keep it classy.</p>
+  </footer>
+
+   <script>
+    // Mobile Menu Toggle
+    const menuToggle = document.querySelector('.menu-toggle');
+    const sideMenu = document.getElementById('sideMenu');
+    const closeBtn = document.querySelector('.close-btn');
+
+    menuToggle.addEventListener('click', () => {
+      sideMenu.classList.add('active');
+    });
+
+    closeBtn.addEventListener('click', () => {
+      sideMenu.classList.remove('active');
+    });
+  </script>
+</body>
+</html>
