@@ -271,23 +271,44 @@
     border-radius: 12px;
     padding: 2rem;
     width: 250px;
-    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.05);
-    transition: transform 0.3s ease;
-    animation: floatImg 4s ease-in-out infinite;
-  }
+    border: 2px solid #ff1a00;     /* Deep neon red */
+    outline: 2px solid #ff4d00;    /* Slight orange tint for outer */
+    outline-offset: 4px;
+    box-shadow: 0 0 10px #ff1a00, 0 0 20px #ff4d00;
+    animation: glowRedLine 2.5s ease-in-out infinite;
+}
 
-  .social-card:hover {
-    transform: translateY(-5px);
-  }
+@keyframes glowRedLine {
+    0%, 100% {
+        box-shadow: 0 0 8px #ff1a00, 0 0 15px #ff4d00;
+    }
+    50% {
+        box-shadow: 0 0 15px #ff1a00, 0 0 30px #ff4d00;
+    }
+}
 
-  .social-card img {
+
+ .social-card img {
     width: 80px;
     height: 80px;
     object-fit: contain;
     margin-bottom: 1rem;
-    animation: floatSlow 3s ease-in-out infinite;
-    filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.1));
-  }
+    animation: floatSlow 3s ease-in-out infinite, imgGlow 2.5s ease-in-out infinite;
+    filter: drop-shadow(0 0 6px #ff1a00)
+            drop-shadow(0 0 12px #ff4d00);
+}
+  
+@keyframes imgGlow {
+    0%, 100% {
+        filter: drop-shadow(0 0 6px #ff1a00)
+                drop-shadow(0 0 12px #ff4d00);
+    }
+    50% {
+        filter: drop-shadow(0 0 12px #ff1a00)
+                drop-shadow(0 0 24px #ff4d00);
+    }
+}
+
 
   .social-card h3 {
     font-size: 1.1rem;
